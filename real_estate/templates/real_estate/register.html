@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Real Estate</title>
+    </head>
+    <body>
+        <div style="width: 100%; height: auto; padding: 15px;">
+            <h2>Register</h2>
+
+            <form action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <div>
+                    <select name="user_type">
+                        <option value="customer">Customer</option>
+                        <option value="agent">Agent</option>
+                        <option value="company">Company</option>
+                    </select>
+                </div>
+                <div>
+                    <input autofocus type="text" name="username" placeholder="Username">
+                </div>
+                <div>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <input type="submit" value="Register">
+            </form>
+        </div>
+    </body>
+</html>

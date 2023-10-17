@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Real Estate</title>
+    </head>
+    <body>
+        <div style="width: 100%; height: auto; padding: 15px;">
+            <h2>Login</h2>
+    
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <h4>Customer</h4>
+                <div>
+                    <input autofocus type="text" name="username" placeholder="Username">
+                </div>
+                <div>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <input type="hidden" name="user_type" value="customer">
+                <input type="submit" value="Login">
+            </form>
+
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <h4>Agent</h4>
+                <div>
+                    <input autofocus type="text" name="username" placeholder="Username">
+                </div>
+                <div>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <input type="hidden" name="user_type" value="agent">
+                <input type="submit" value="Login">
+            </form>
+
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <h4>Company</h4>
+                <div>
+                    <input autofocus type="text" name="username" placeholder="Username">
+                </div>
+                <div>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <input type="hidden" name="user_type" value="company">
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </body>
+</html>
