@@ -4,13 +4,30 @@
 <html lang="en">
     <head>
         <title>Reat Estate</title>
+        {% block style %}
+        {% endblock %}
         {% block static %}
         {% endblock %}
     </head>
-    <body>
-        <div>
-            {% block body %}
-            {% endblock %}
+    <body style="background-color: rgb(81, 31, 112)">
+        <div id="nav-bar">
+            <div style="margin-left: 20px; margin-right: 10px; color: white;">
+                CS 425 Project
+            </div>
+            <div>
+                button1
+            </div>
+            <div>
+                button2
+            </div>
+            <div>
+                button3
+            </div>
+            <div>
+                button4
+            </div>
         </div>
+        {% block body %}
+        {% endblock %}
     </body>
 </html>
