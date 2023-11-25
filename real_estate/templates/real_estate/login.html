@@ -6,80 +6,9 @@
 {% endblock %}
 
 {% block style %}
-body {
-    overflow: hidden;
-}
 
-.login-block {
-    width: 700px;
-    border-style: solid;
-    border-radius: 15px;
-}
-
-#login-container {
-    display: flex;
-    gap: 10px;
-}
-
-#info-bar {
-    width: 300px;
-    min-height: 695px;
-    font-size: 18px;
-    flex-shrink: 0;
-    border-radius: 15px;
-    background: blue;
-    padding: 10px;
-}
 {% endblock %}
 
 {% block body %}
-<div style="display: flex; align-items: stretch; gap: 10px; min-height: 100%;">
-    <div id="info-bar">
-        <text>
-            Project Description
-        </text>
-    </div>
-    <div id="login-container" data-mouse-down-at="0" data-prev-percentage="0" data-percentage="0">
-        <div id="track">
-            <form id="customer-block" class="login-block" action="{% url 'login' %}" method="post">
-                {% csrf_token %}
-                <h4>Welcome CS 425 Customer!</h4>
-                <div>
-                    <input autofocus type="text" name="username" placeholder="Username">
-                </div>
-                <div>
-                    <input type="password" name="password" placeholder="Password">
-                </div>
-                <input type="hidden" name="user_type" value="customer">
-                <input type="submit" value="Login">
-            </form>
-            
-            <form id="company-block" class="login-block" action="{% url 'login' %}" method="post">
-                {% csrf_token %}
-                <h4>Welcome CS 425 Company!</h4>
-                <div>
-                    <input autofocus type="text" name="username" placeholder="Username">
-                </div>
-                <div>
-                    <input type="password" name="password" placeholder="Password">
-                </div>
-                <input type="hidden" name="user_type" value="company">
-                <input type="submit" value="Login">
-            </form>
-            
-            <form id="agent-block" class="login-block" action="{% url 'login' %}" method="post">
-                {% csrf_token %}
-                <h4>Welcome CS 425 Agent!</h4>
-                <div>
-                    <input autofocus type="text" name="username" placeholder="Username">
-                </div>
-                <div>
-                    <input type="password" name="password" placeholder="Password">
-                </div>
-                <input type="hidden" name="user_type" value="agent">
-                <input type="submit" value="Login">
-            </form>
-        </div>
-    </div>
-</div>
+
 {% endblock %}
