@@ -3,25 +3,27 @@ from django.db import models
 
 # Create your models here.
 
-class User(AbstractUser, models.Model):
-    userID = models.IntegerField()
-    password = models.TextField()
-    username = models.TextField(unique=True)
+class UserProfile(AbstractUser, models.Model):
+    password = models.CharField(max_length=20)
+    username = models.CharField(max_length=30, unique=True)
     
 class Company(models.Model):
-    name = models.TextField
-    companyID = models.ForeignKey(User, on_delete=models.CASCADE, related_name="isCompany")
+    name = models.CharField(max_length=30)
+    companyID = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="isCompany")
+    
+    def _str_(self):
+        return self.name
     
 class Agent(models.Model):
-    name = models.TextField()
-    phone = models.TextField(max_length=10)
-    agentID = models.ForeignKey(User, on_delete=models.CASCADE, related_name="isAgent")
+    name = models.CharField(max_length=30)
+    phone = models.CharField(max_length=10)
+    agentID = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="isAgent")
     companyID = models.ForeignKey(Company, on_delete=models.CASCADE, related_name="allAgents")
     
 class Customer(models.Model):
-    name = models.TextField()
-    phone = models.TextField(max_length=10)
-    customerID = models.ForeignKey(User, on_delete=models.CASCADE, related_name="isCutomer")
+    name = models.CharField(max_length=30)
+    phone = models.CharField(max_length=10)
+    customerID = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="isCutomer")
 
 class Property(models.Model):
     zip = models.IntegerField()
@@ -29,8 +31,7 @@ class Property(models.Model):
     address = models.CharField(max_length=30)
     price = models.IntegerField()
     desciption = models.TextField()
-    ownerName = models.TextField()
-    propertyID = models.IntegerField()
+    ownerName = models.CharField(max_length=30)
     agentID = models.ForeignKey(Agent, on_delete=models.CASCADE, related_name="allAssignedProperties")
     
 class Review(models.Model):
@@ -42,4 +43,4 @@ class Review(models.Model):
 class Booking(models.Model):
     customerID = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="myAppointments")
     propertyID = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="allBookings")
-    date = models.DateField() # datetime.date instance (python)
+    date = models.DateField()

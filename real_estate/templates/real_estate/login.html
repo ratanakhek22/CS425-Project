@@ -69,6 +69,11 @@
 }
 {% endblock %}
 
+{% block nav %}
+<a href="{% url 'login' usertype='company' %}">Company</a>
+<a href="{% url 'login' usertype='agent' %}">Agent</a>
+{% endblock %}
+
 {% block body %}
 <div id="login-body">
     <div id="login-left">
@@ -79,9 +84,9 @@
     <div id="login-right">
         <div id="login-container">
             <text style="font-size: 35px; margin-left: 10px;">
-                Welcome Customer!
+                Welcome, logging in as {{ user_type }}!
             </text>
-            <form id="login-content" action="{% url 'login' %}" method="post">
+            <form id="login-content" action="{% url 'login' usertype=user_type %}" method="post">
                 {% csrf_token %}
                 <div class="input-container">
                     <input class="input-box" autofocus type="text" name="username" placeholder="Username">
@@ -94,7 +99,8 @@
             </form>
             <text id="register-text">
                 Don't have an account?
-                <a href="{% url 'register' usertype='customer' %}">Register here.</a>
+                {% url 'register' arg  as register_url %}
+                <a href="{% url 'register' usertype=user_type %}">Register here.</a>
             </text>
         </div>
     </div>

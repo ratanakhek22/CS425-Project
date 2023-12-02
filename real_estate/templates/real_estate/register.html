@@ -27,13 +27,17 @@
     border: black solid 2px;
     border-radius: 10px;
 }
+
+radio-labels {
+    font-size: 20px;
+}
 {% endblock %}
 
 {% block body %}
 <text style="font-size: 35px; margin-left: 10px;">
     Registering as {{ user_type }}!
 </text>
-<form id="login-content" action="{% url 'register' usertype="{{ user_type }}" %}" method="post">
+<form id="register-content" action="{% url 'register' usertype=user_type %}" method="post">
     {% csrf_token %}
     <div class="input-container">
         <input class="input-box" autofocus type="text" name="username" placeholder="Username">
@@ -41,6 +45,26 @@
     <div class="input-container">
         <input class="input-box" type="text" name="password" placeholder="Password">
     </div>
+    <div class="input-container">
+        <input class="input-box" type="text" name="name" placeholder="Name">
+    </div>
+
+    {% if user_type != "company" %}
+        <div class="input-container">
+            <input class="input-box" type="text" name="phone" placeholder="Phone">
+        </div>
+    {% endif %}
+
+    {% if user_type == "agent" %}
+        {% for company in allCompanies %}
+            <input class="radio-btn" id="{{ company.name }}" type="radio" name="company" value="{{ company.companyID.userID }}">
+            <label id="radio-labels" for="{{ company.name }}">{{ company.name }}</label>
+        {% endfor %}
+    {% endif %}
+
     <input id="register-btn" type="submit" value="Register">
+    {% if message %}
+        <text style="font-size: 22px;">{{ message }}</text>
+    {% endif %}
 </form>
 {% endblock %}
