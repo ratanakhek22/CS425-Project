@@ -13,9 +13,11 @@ def login_view(request):
     else:
         return render(request, "real_estate/login.html")
     
-def register_view(request):
+def register_view(request, usertype):
     if request.method == "POST":
         # try to register the user if can't render register again
         return render(request, "real_estate/login.html")
     else:
-        return render(request, "real_estate/register.html")
+        return render(request, "real_estate/register.html", {
+            "user_type": usertype,
+        })

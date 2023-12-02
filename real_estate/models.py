@@ -3,10 +3,10 @@ from django.db import models
 
 # Create your models here.
 
-class User(models.Model):
+class User(AbstractUser, models.Model):
     userID = models.IntegerField()
     password = models.TextField()
-    username = models.TextField()
+    username = models.TextField(unique=True)
     
 class Company(models.Model):
     name = models.TextField

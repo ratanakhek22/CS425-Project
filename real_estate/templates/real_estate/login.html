@@ -6,9 +6,97 @@
 {% endblock %}
 
 {% block style %}
+#login-body {
+    display: flex;
+}
 
+#login-left {
+    width: 50%;
+}
+
+#login-description {
+    height: 600px;
+    border: gray solid 2px;
+    margin: 20px 10px 20px 20px;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+#login-right {
+    width: 50%;
+}
+
+#login-container {
+    height: 600px;
+    border: gray solid 2px;
+    margin: 20px 20px 20px 10px;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+}
+
+#login-content {
+}
+
+.input-container {
+    width: 50%;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.input-box {
+    width: 100%;
+    font-size: 22px;
+    padding: 5px;
+    border: gray solid 2px;
+    border-radius: 10px;
+}
+
+#login-btn {
+    font-size: 22px;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 5px;
+    border: black solid 2px;
+    border-radius: 10px;
+}
+
+#register-text {
+    font-size: 22px; 
+    position: absolute;
+    bottom: 50px;
+    margin-left: 10px;
+}
 {% endblock %}
 
 {% block body %}
+<div id="login-body">
+    <div id="login-left">
+        <div id="login-description">
 
+        </div>
+    </div>
+    <div id="login-right">
+        <div id="login-container">
+            <text style="font-size: 35px; margin-left: 10px;">
+                Welcome Customer!
+            </text>
+            <form id="login-content" action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <div class="input-container">
+                    <input class="input-box" autofocus type="text" name="username" placeholder="Username">
+                </div>
+                <div class="input-container">
+                    <input class="input-box" type="text" name="password" placeholder="Password">
+                </div>
+                <input type="hidden" name="user_type" value="customer">
+                <input id="login-btn" type="submit" value="Login">
+            </form>
+            <text id="register-text">
+                Don't have an account?
+                <a href="{% url 'register' usertype='customer' %}">Register here.</a>
+            </text>
+        </div>
+    </div>
+</div>
 {% endblock %}

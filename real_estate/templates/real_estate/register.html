@@ -1,32 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Real Estate</title>
-    </head>
-    <body>
-        <div style="width: 100%; height: auto; padding: 15px;">
-            <h2>Register</h2>
+{% extends "real_estate/default.html" %}
+{% load static %}
 
-            <form action="{% url 'register' %}" method="post">
-                {% csrf_token %}
-                <div>
-                    <input autofocus type="email" name="email" placeholder="Email">
-                </div>
-                <div>
-                    <input type="text" name="username" placeholder="Username">
-                </div>
-                <div>
-                    <input type="password" name="password" placeholder="Password">
-                </div>
-                <div>
-                    <select name="user_type">
-                        <option value="customer">Customer</option>
-                        <option value="agent">Agent</option>
-                        <option value="company">Company</option>
-                    </select>
-                </div>
-                <input type="submit" value="Register">
-            </form>
-        </div>
-    </body>
-</html>
+{% block static %}
+{% endblock %}
+
+{% block style %}
+.input-container {
+    width: 35%;
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.input-box {
+    width: 100%;
+    font-size: 22px;
+    padding: 5px;
+    border: gray solid 2px;
+    border-radius: 10px;
+}
+
+#register-btn {
+    font-size: 22px;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 5px;
+    border: black solid 2px;
+    border-radius: 10px;
+}
+{% endblock %}
+
+{% block body %}
+<text style="font-size: 35px; margin-left: 10px;">
+    Registering as {{ user_type }}!
+</text>
+<form id="login-content" action="{% url 'register' usertype="{{ user_type }}" %}" method="post">
+    {% csrf_token %}
+    <div class="input-container">
+        <input class="input-box" autofocus type="text" name="username" placeholder="Username">
+    </div>
+    <div class="input-container">
+        <input class="input-box" type="text" name="password" placeholder="Password">
+    </div>
+    <input id="register-btn" type="submit" value="Register">
+</form>
+{% endblock %}
