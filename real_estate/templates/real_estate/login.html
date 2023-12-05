@@ -70,8 +70,9 @@
 {% endblock %}
 
 {% block nav %}
-<a href="{% url 'login' usertype='company' %}">Company</a>
-<a href="{% url 'login' usertype='agent' %}">Agent</a>
+    <button class="nav-btn" style="padding: 15px 30px; margin-right: 10px;" onclick="window.location='{% url 'login' usertype='company' %}'">Company</button>
+    <button class="nav-btn" style="padding: 15px 30px; margin-right: 10px;" onclick="window.location='{% url 'login' usertype='agent' %}'">Agent</button>
+    <button class="nav-btn" style="padding: 15px 30px;" onclick="window.location='{% url 'login' usertype='customer' %}'">Customer</button>
 {% endblock %}
 
 {% block body %}

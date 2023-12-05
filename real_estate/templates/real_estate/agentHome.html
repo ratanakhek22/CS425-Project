@@ -5,16 +5,21 @@
 {% endblock %}
 
 {% block body %}
-<div id="info-block">
-	<h2>Agent Home Page</h2>
-	<h3>
-		Agent Information
-	</h3>
-	<p>
-		Name: <!-- put name of Agent User here -->
-	</p>
-	<p>
-		Phone: <!-- put phone of Agent User here -->
-	</p>
-</div>
+    <div>
+        <h2>Agent Home Page</h2>
+        <p>Agents allow customers to book appointments at properties</p>
+
+    </div>
+    <div id="info-block">
+        <h2>agent Home Page</h2>
+        <h3>
+            agent Information
+        </h3>
+        <p>
+            Name: {{ userAgent.name }}
+        <p>
+            Phone: {{ userAgent.Phone}}
+        </p>
+        
+    </div>
 {% endblock %}
