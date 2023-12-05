@@ -4,6 +4,10 @@
 {% block static %}
 {% endblock %}
 
+{% block nav %}
+<button class="nav-btn" style="padding: 15px 30px;" onclick="window.location='{% url 'login' usertype='customer' %}'">Back to Login</button>
+{% endblock %}
+
 {% block style %}
 .input-container {
     width: 35%;
@@ -37,7 +41,7 @@ radio-labels {
 <text style="font-size: 35px; margin-left: 10px;">
     Registering as {{ user_type }}!
 </text>
-<form id="register-content" action="{% url 'register' %}" method="post">
+<form id="register-content" action={% url 'register' %} method="post">
     {% csrf_token %}
     <input type="hidden" name="usertype" value={{ user_type }}>
     <input type="hidden" name="operation" value="registering">

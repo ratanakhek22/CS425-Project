@@ -1,19 +1,33 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 from .models import *;
 
 # Views
 def index(request):
-    return redirect(login_view, usertype="customer")
+    return redirect("login", usertype="customer")
 
 def login_view(request, usertype):
     if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+        user = UserProfile.objects.get(username=username, password=password)
+        
+        print([user.username, user.password, user.pk] if user is not None else "none")
+        
+        if user is not None:
+            login(request, user)
+        else:
+            return render(request, "real_estate/login.html", {
+                "message": "Invalid username and/or password."
+            })
+        
         # check for customer type and display different pages
         if usertype == "customer":
-            return render(request, "real_estate/customerHome.html")
+            return redirect("customerHome")
         elif usertype == "agent":
-            return render(request, "real_estate/agentHome.html")
+            return redirect("agentHome")
         elif usertype == "company":
-            return render(request, "real_estate/companyHome.html")
+            return redirect("companyHome")
     else:
         return render(request, "real_estate/login.html", {
             "user_type": usertype,
@@ -52,20 +66,20 @@ def register_view(request):
         })
 
 def agent_view(request):
-    user = request.user
+    user = request.user.isAgent
     return render(request, "real_estate/agentHome.html", {
-        "userAgent": Agent.objects.get(agentID=user),
+        "userAgent": user,
     })
 
 def company_view(request):
     user = request.user
     return render(request, "real_estate/companyHome.html", {
         "userCompany": Company.objects.get(companyID=user),
-        "allEmployees": Company.objects.get(companyID=user).allAgents
+        "allEmployees": Company.objects.get(companyID=user).allAgents.all()
     })
     
 def customer_view(request):
     user = request.user
     return render(request, "real_estate/customerHome.html", {
-        "userCustomer": Customer.objects.get(cutomerID=user),
+        "userCustomer": Customer.objects.get(customerID=user),
     })

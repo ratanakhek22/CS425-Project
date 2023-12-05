@@ -79,7 +79,9 @@
 <div id="login-body">
     <div id="login-left">
         <div id="login-description">
-
+            {% if message %}
+                {{ message }}
+            {% endif %}
         </div>
     </div>
     <div id="login-right">
@@ -87,7 +89,7 @@
             <text style="font-size: 35px; margin-left: 10px;">
                 Welcome, logging in as {{ user_type }}!
             </text>
-            <form id="login-content" action="{% url 'login' usertype=user_type %}" method="post">
+            <form id="login-content" action={% url 'login' usertype=user_type %} method="post">
                 {% csrf_token %}
                 <div class="input-container">
                     <input class="input-box" autofocus type="text" name="username" placeholder="Username">
@@ -95,13 +97,11 @@
                 <div class="input-container">
                     <input class="input-box" type="text" name="password" placeholder="Password">
                 </div>
-                <input type="hidden" name="user_type" value="customer">
                 <input id="login-btn" type="submit" value="Login">
             </form>
             <text id="register-text">
                 Don't have an account?
-                {% url 'register' arg  as register_url %}
-                <form action="{% url 'register' %}" method="post">
+                <form action={% url 'register' %} method="post">
                     {% csrf_token %}
                     <input type="hidden" name="usertype" value={{ user_type }}>
                     <input type="hidden" name="operation" value="getRegPage">
