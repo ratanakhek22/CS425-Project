@@ -8,19 +8,19 @@ def index(request):
 def login_view(request, usertype):
     if request.method == "POST":
         # check for customer type and display different pages
-        if request.POST["user_type"] == "customer":
+        if usertype == "customer":
             return render(request, "real_estate/customerHome.html")
-        elif request.POST["user_type"] == "agent":
+        elif usertype == "agent":
             return render(request, "real_estate/agentHome.html")
-        elif request.POST["user_type"] == "company":
+        elif usertype == "company":
             return render(request, "real_estate/companyHome.html")
     else:
         return render(request, "real_estate/login.html", {
             "user_type": usertype,
         })
     
-def register_view(request, usertype):
-    if request.method == "POST":
+def register_view(request):
+    if request.method == "POST" and request.POST["operation"] != "getRegPage":
         username = request.POST["username"]
         password = request.POST["password"]
         
@@ -32,25 +32,25 @@ def register_view(request, usertype):
             user = UserProfile(username=username, password=password)
             user.save()
             
-            if usertype == "customer":
+            if request.POST["usertype"] == "customer":
                 cust = Customer(name=request.POST["name"], phone=request.POST["phone"], customerID=user)
                 cust.save()
-            if usertype == "agent":
-                agent = Agent(name=request.POST["name"], phone=request.POST["phone"], agentID=user)
+            elif request.POST["usertype"] == "agent":
+                agent = Agent(name=request.POST["name"], phone=request.POST["phone"], agentID=user, companyID=Company.objects.get(pk=request.POST["company"]))
                 agent.save()
-            elif usertype == "company":
+            elif request.POST["usertype"] == "company":
                 comp = Company(name=request.POST["name"], companyID=user)
                 comp.save()
         
         return render(request, "real_estate/login.html", {
-            "user_type": usertype,
+            "user_type": request.POST["usertype"],
         })
     else:
         return render(request, "real_estate/register.html", {
-            "user_type": usertype,
-            "allCompanies": [] if usertype != "agent" else Company.objects.all(),
+            "user_type": request.POST["usertype"],
+            "allCompanies": [] if request.POST["usertype"] != "agent" else Company.objects.all(),
         })
-        
+
 def agent_view(request):
     user = request.user
     return render(request, "real_estate/agentHome.html", {
@@ -61,4 +61,10 @@ def company_view(request):
     user = request.user
     return render(request, "real_estate/companyHome.html", {
         "userCompany": Agent.objects.filter(companyID=user),
+    })
+    
+def customer_view(request):
+    user = request.user
+    return render(request, "real_estate/customerHome.html", {
+        "userCustomer": Customer.objects.filter(cutomerID=user),
     })

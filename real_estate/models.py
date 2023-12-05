@@ -23,7 +23,7 @@ class Agent(models.Model):
 class Customer(models.Model):
     name = models.CharField(max_length=30)
     phone = models.CharField(max_length=10)
-    customerID = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="isCutomer")
+    customerID = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name="isCustomer")
 
 class Property(models.Model):
     zip = models.IntegerField()

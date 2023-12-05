@@ -5,8 +5,29 @@
 {% block static %}
 {% endblock %}
 
+{% block style %}
+{% endblock %}
+
 {% block body %}
-    <div>
-        <h2>Company Home Page</h2>
-    </div>
+<div id="info-block">
+	<h2>Company Home Page</h2>
+	<h3>
+		Company Information
+	</h3>
+	<p>
+		Name: <!-- put name of Company User here -->
+	</p>
+
+	<!-- 
+		This loop will go through a list of agents employed by the user's company
+		Each iteration should create one block of stuff
+	 -->
+	{% for employee in allEmployees %}
+		<!--
+			Create block with a singular employee's information
+			An employee is an agent object
+			Refer to models.py to see the attributes associated with agent objects
+		-->
+	{% endfor %}
+</div>
 {% endblock %}

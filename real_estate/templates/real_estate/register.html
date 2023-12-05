@@ -37,8 +37,10 @@ radio-labels {
 <text style="font-size: 35px; margin-left: 10px;">
     Registering as {{ user_type }}!
 </text>
-<form id="register-content" action="{% url 'register' usertype=user_type %}" method="post">
+<form id="register-content" action="{% url 'register' %}" method="post">
     {% csrf_token %}
+    <input type="hidden" name="usertype" value={{ user_type }}>
+    <input type="hidden" name="operation" value="registering">
     <div class="input-container">
         <input class="input-box" autofocus type="text" name="username" placeholder="Username">
     </div>
@@ -57,8 +59,8 @@ radio-labels {
 
     {% if user_type == "agent" %}
         {% for company in allCompanies %}
-            <input class="radio-btn" id="{{ company.name }}" type="radio" name="company" value="{{ company.companyID.userID }}">
-            <label id="radio-labels" for="{{ company.name }}">{{ company.name }}</label>
+            <input class="radio-btn" id={{ company.name }} type="radio" name="company" value={{ company.pk }}>
+            <label id="radio-labels" for={{ company.name }}>{{ company.name }}</label>
         {% endfor %}
     {% endif %}
 

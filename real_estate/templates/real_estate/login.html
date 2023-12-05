@@ -100,7 +100,12 @@
             <text id="register-text">
                 Don't have an account?
                 {% url 'register' arg  as register_url %}
-                <a href="{% url 'register' usertype=user_type %}">Register here.</a>
+                <form action="{% url 'register' %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="usertype" value={{ user_type }}>
+                    <input type="hidden" name="operation" value="getRegPage">
+                    <input type="submit" value="Register">
+                </form>
             </text>
         </div>
     </div>
