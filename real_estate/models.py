@@ -31,7 +31,6 @@ class Property(models.Model):
     address = models.CharField(max_length=30)
     price = models.IntegerField()
     desciption = models.TextField()
-    ownerName = models.CharField(max_length=30)
     agentID = models.ForeignKey(Agent, on_delete=models.CASCADE, related_name="allAssignedProperties")
     
 class Review(models.Model):

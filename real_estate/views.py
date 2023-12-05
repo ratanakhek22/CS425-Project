@@ -52,6 +52,13 @@ def register_view(request, usertype):
         })
         
 def agent_view(request):
+    user = request.user
     return render(request, "real_estate/agentHome.html", {
-        "allAgents": Agent.objects.all(),
+        "userAgent": Agent.objects.filter(agentID=user),
+    })
+
+def company_view(request):
+    user = request.user
+    return render(request, "real_estate/companyHome.html", {
+        "userCompany": Agent.objects.filter(companyID=user),
     })
