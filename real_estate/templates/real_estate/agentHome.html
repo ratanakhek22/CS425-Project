@@ -4,22 +4,18 @@
 {% block static %}
 {% endblock %}
 
-{% block body %}
-    <div>
-        <h2>Agent Home Page</h2>
-        <p>Agents allow customers to book appointments at properties</p>
+{% block style %}
+{% endblock %}
 
-    </div>
+{% block nav %}
+<!-- Home Page -->
+{% endblock %}
+
+{% block body %}
     <div id="info-block">
-        <h2>agent Home Page</h2>
-        <h3>
-            agent Information
-        </h3>
-        <p>
-            Name: {{ userAgent.name }}
-        <p>
-            Phone: {{ userAgent.phone}}
-        </p>
-        
+        <h2>Agent Home Page</h2>
+        <h3>Agent Information</h3>
+        <p>Name: {{ userAgent.name }}</p>
+        <p>Phone: {{ userAgent.phone}}</p>
     </div>
 {% endblock %}

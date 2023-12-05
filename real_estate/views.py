@@ -12,8 +12,6 @@ def login_view(request, usertype):
         password = request.POST["password"]
         user = UserProfile.objects.get(username=username, password=password)
         
-        print([user.username, user.password, user.pk] if user is not None else "none")
-        
         if user is not None:
             login(request, user)
         else:
@@ -66,16 +64,16 @@ def register_view(request):
         })
 
 def agent_view(request):
-    user = request.user.isAgent
+    user = request.user
     return render(request, "real_estate/agentHome.html", {
-        "userAgent": user,
+        "userAgent": Agent.objects.get(agentID=user),
     })
 
 def company_view(request):
     user = request.user
     return render(request, "real_estate/companyHome.html", {
         "userCompany": Company.objects.get(companyID=user),
-        "allEmployees": Company.objects.get(companyID=user).allAgents.all()
+        "allEmployees": list(Company.objects.get(companyID=user).allAgents.all())
     })
     
 def customer_view(request):

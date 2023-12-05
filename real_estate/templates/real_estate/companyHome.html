@@ -8,26 +8,29 @@
 {% block style %}
 {% endblock %}
 
+{% block style %}
+{% endblock %}
+
+{% block nav %}
+<!-- Home Page -->
+<!-- add a logout button -->
+{% endblock %}
+
 {% block body %}
 <div id="info-block">
 	<h2>Company Home Page</h2>
-	<h3>
-		Company Information
-	</h3>
-	<p>
-		Name: <!-- put name of Company User here -->
-	</p>
-
-	<!-- 
-		This loop will go through a list of agents employed by the user's company
-		Each iteration should create one block of stuff
-	 -->
-	{% for employee in allEmployees %}
-		<!--
-			Create block with a singular employee's information
-			An employee is an agent object
-			Refer to models.py to see the attributes associated with agent objects
-		-->
-	{% endfor %}
+	<h3>Company Information</h3>
+	<p>Name: {{ userCompany.name }}</p>
 </div>
+
+{% for employee in allEmployees %}
+	<!-- make this look like a block of information -->
+	<div class="emplyee-info-block">
+		<p>Name: {{ employee.name }}</p>
+		<p>Phone: {{ employee.phone }}</p>
+
+		<!--delete the agent's acccount-->
+		<button>Fire</button>
+	</div>
+{% endfor %}
 {% endblock %}
