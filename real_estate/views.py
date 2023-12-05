@@ -54,17 +54,18 @@ def register_view(request):
 def agent_view(request):
     user = request.user
     return render(request, "real_estate/agentHome.html", {
-        "userAgent": Agent.objects.filter(agentID=user),
+        "userAgent": Agent.objects.get(agentID=user),
     })
 
 def company_view(request):
     user = request.user
     return render(request, "real_estate/companyHome.html", {
-        "userCompany": Agent.objects.filter(companyID=user),
+        "userCompany": Company.objects.get(companyID=user),
+        "allEmployees": Company.objects.get(companyID=user).allAgents
     })
     
 def customer_view(request):
     user = request.user
     return render(request, "real_estate/customerHome.html", {
-        "userCustomer": Customer.objects.filter(cutomerID=user),
+        "userCustomer": Customer.objects.get(cutomerID=user),
     })
