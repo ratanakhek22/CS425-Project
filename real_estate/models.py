@@ -43,4 +43,4 @@ class Review(models.Model):
 class Booking(models.Model):
     customerID = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="myAppointments")
     propertyID = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="allBookings")
-    date = models.DateField()
+    date = models.DateField(auto_now_add=True)

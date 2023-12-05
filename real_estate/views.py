@@ -46,8 +46,12 @@ def register_view(request, usertype):
             "user_type": usertype,
         })
     else:
-        print(usertype)
         return render(request, "real_estate/register.html", {
             "user_type": usertype,
             "allCompanies": [] if usertype != "agent" else Company.objects.all(),
         })
+        
+def agent_view(request):
+    return render(request, "real_estate/agentHome.html", {
+        "allAgents": Agent.objects.all(),
+    })
