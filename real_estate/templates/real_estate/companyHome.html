@@ -8,8 +8,8 @@
 {% block style %}
 {% endblock %}
 
-{% block style %}
-{% endblock %}
+
+
 
 {% block nav %}
 <!-- Home Page -->
@@ -20,7 +20,8 @@
 <div id="info-block">
 	<h2>Company Home Page</h2>
 	<h3>Company Information</h3>
-	<p>Name: {{ userCompany.name }}</p>
+	<p> Company's Name: {{ userCompany.name }}</p>
+	
 </div>
 
 {% for employee in allEmployees %}
@@ -28,7 +29,10 @@
 	<div class="emplyee-info-block">
 		<p>Name: {{ employee.name }}</p>
 		<p>Phone: {{ employee.phone }}</p>
-
+		<form>
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
 		<!--delete the agent's acccount-->
 		<button>Fire</button>
 	</div>

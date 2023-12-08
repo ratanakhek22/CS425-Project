@@ -8,16 +8,23 @@
 {% endblock %}
 
 {% block nav %}
-<!-- Home Page -->
-<!-- Browsing Page -->
-<!-- add a logout button -->
 {% endblock %}
 
 {% block body %}
 <div id="info-block">
 	<h2>Customer Home Page</h2>
+	<sec>
 	<h3>Customer Information</h3>
 	<p>Name: {{ userCustomer.name }}</p>
 	<p>Phone: {{ userCustomer.phone}}</p>
+    </sec>
+	<!-- Logout Form -->
+
+    <form>
+		{% csrf_token %}
+		<button type="submit">Logout</button>
+	</form>
 </div>
 {% endblock %}
+
+

@@ -18,5 +18,10 @@
         <h3>Agent Information</h3>
         <p>Name: {{ userAgent.name }}</p>
         <p>Phone: {{ userAgent.phone}}</p>
+
+        <form>
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
     </div>
 {% endblock %}
