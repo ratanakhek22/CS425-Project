@@ -24,7 +24,7 @@
 <!-- Survey Form -->
 <div id="survey-form">
     <h2>Property Information Survey</h2>
-    <form method="post" action="{% url 'processSurvey' %}">
+    <form method="post">
         {% csrf_token %}
         
         <!-- Zip Code -->

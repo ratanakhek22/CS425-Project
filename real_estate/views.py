@@ -113,3 +113,6 @@ def property_list_view(request):
         "allProperties": allProperties,
         "user_type": "company",
     })
+    
+def add_property_view(request):
+    return render(request, "real_estate/addProperty.html")
