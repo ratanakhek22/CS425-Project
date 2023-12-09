@@ -8,12 +8,13 @@
 {% block style %}
 {% endblock %}
 
-
-
-
 {% block nav %}
 <!-- Home Page -->
 <!-- add a logout button -->
+<form action={% url 'logout' %}>
+	{% csrf_token %}
+	<button type="submit">Logout</button>
+</form>
 {% endblock %}
 
 {% block body %}
@@ -29,10 +30,6 @@
 	<div class="emplyee-info-block">
 		<p>Name: {{ employee.name }}</p>
 		<p>Phone: {{ employee.phone }}</p>
-		<form>
-            {% csrf_token %}
-            <button type="submit">Logout</button>
-        </form>
 		<!--delete the agent's acccount-->
 		<button>Fire</button>
 	</div>

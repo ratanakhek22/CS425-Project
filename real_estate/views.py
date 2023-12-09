@@ -30,6 +30,10 @@ def login_view(request, usertype):
         return render(request, "real_estate/login.html", {
             "user_type": usertype,
         })
+
+def logout_view(request):
+    logout(request)
+    return redirect("login", usertype="customer")
     
 def register_view(request):
     if request.method == "POST" and request.POST["operation"] != "getRegPage":
