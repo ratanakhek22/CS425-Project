@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block style %}
+.employee-info-block {
+	border: solid gray 2px;
+	border-radius: 15px;
+    padding: 15px;
+}
 {% endblock %}
 
 {% block nav %}
@@ -30,11 +35,15 @@
 
 {% for employee in allEmployees %}
 	<!-- make this look like a block of information -->
-	<div class="emplyee-info-block">
+	<div class="employee-info-block">
 		<p>Name: {{ employee.name }}</p>
 		<p>Phone: {{ employee.phone }}</p>
 		<!--delete the agent's acccount-->
-		<button>Fire</button>
+		<form method="post" action={% url "companyHome" %}>
+			{% csrf_token %}
+			<input type="hidden" name="employeePK" value={{ employee.pk }}>
+			<button type="submit">Fire</button>
+		</form>
 	</div>
 {% endfor %}
 {% endblock %} 

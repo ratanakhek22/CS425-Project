@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block style %}
+.display-block {
+    border: solid gray 2px;
+	border-radius: 15px;
+    padding: 15px;
+}
 {% endblock %}
 
 {% block nav %}
@@ -19,13 +24,20 @@
 {% endblock %}
 
 {% block body %}
-<div id="info-block">
+<div>
 	<h2>Customer Home Page</h2>
 	<sec>
 		<h3>Customer Information</h3>
 		<p>Name: {{ userCustomer.name }}</p>
 		<p>Phone: {{ userCustomer.phone}}</p>
     </sec>
+	<h2>All Booked Visits</h2>
+	{% for property in allProperties %}
+		<div class="display-block">
+			<p>Price: {{ property.price }}</p>
+			<p>Location: {{ property.address }}, {{ property.state }}, {{ property.zip }}</p>
+		</div>
+	{% endfor %}
 </div>
 {% endblock %}
 

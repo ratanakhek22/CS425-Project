@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block style %}
+.display-block {
+    border: solid gray 2px;
+	border-radius: 15px;
+    padding: 15px;
+}
 {% endblock %}
 
 {% block nav %}
@@ -22,5 +27,25 @@
         <h3>Agent Information</h3>
         <p>Name: {{ userAgent.name }}</p>
         <p>Phone: {{ userAgent.phone}}</p>
+    </div>
+    <div>
+        <h2>All Bookings</h2>
+        {% for booking in allBookings %}
+            <div class="display-block">
+                <p>Customer: {{ booking.customerID.name }} | Date: {{ booking.date }}</p>
+            
+                <p>Price: {{ booking.propertyID.price }}</p>
+                <p>Location: {{ booking.propertyID.address }}, {{ booking.propertyID.state }}, {{ booking.propertyID.zip }}</p>
+            </div>
+        {% endfor %}
+    </div>
+    <div>
+        <h2>All Assigned Properties</h2>
+        {% for property in allProperties %}
+            <div class="display-block">
+                <p>Price: {{ property.price }}</p>
+                <p>Location: {{ property.address }}, {{ property.state }}, {{ property.zip }}</p>
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}

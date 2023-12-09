@@ -52,7 +52,7 @@
         <textarea id="description" name="description" rows="4" cols="50"></textarea>
         <br>
 
-        {% for employee in allEmplyees %}
+        {% for employee in allEmployees %}
             <input class="radio-btn" type="radio" name="agent" value={{ employee.pk }}>
             <label class="radio-labels" for={{ employee.name }}>{{ employee.name }}</label>
         {% endfor %}

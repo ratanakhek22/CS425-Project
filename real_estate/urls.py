@@ -14,4 +14,9 @@ urlpatterns = [
     
     path("propert_list/", views.property_list_view, name="propertyList"),
     path("addProperty/", views.add_property_view, name="addProperty"),
+    
+    path("booking/<int:property>/", views.booking_view, name="booking"),
+    
+    path("review/<int:property>/", views.review_view, name="review"),
+    path("viewReviews/<int:property>/", views.viewReviews_view, name="viewReviews"),
 ]

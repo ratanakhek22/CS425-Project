@@ -1,13 +1,23 @@
-<!-- write_review.html -->
-
 {% extends "real_estate/default.html" %}
 
-{% block content %}
+{% block nav %}
+<!-- Home Page -->
+<button class="nav-btn" style="padding: 15px 30px;" onclick="window.location='{% url 'customerHome' %}'">Home</button>
+<!-- Logout Form -->
+<form action={% url 'logout' %}>
+	<button type="submit">Logout</button>
+</form>
+<!-- Browse Properties -->
+<button class="nav-btn" style="padding: 15px 30px;" onclick="window.location='{% url 'propertyList' %}'">Property List</button>
+{% endblock %}
+
+{% block body %}
   <h2>Write a Review</h2>
-  <form method="post" action="{% url 'review' property_id %}">
+  <form method="post" action={% url 'review' propertyPK %}>
     {% csrf_token %}
-   
+    <label for="review">Review:</label>
+    <textarea id="review" name="review" rows="4" cols="50"></textarea>
+
     <button type="submit"> Submit Review</button>
   </form>
-  <a href="{% url real_estate/templates/real_estate/propertyList.html%}">Back to Property Detail</a>
 {% endblock %}

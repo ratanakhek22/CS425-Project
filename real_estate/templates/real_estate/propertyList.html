@@ -9,12 +9,17 @@
     font-size: 22px;
     border: solid gray 2px;
     border-radius: 15px;
+    padding: 15px;
 }
 {% endblock %}
 
 {% block nav %}
 <!-- Home Page -->
-<button class="nav-btn" style="padding: 15px 30px;" onclick="window.location='{% url 'customerHome' %}'">Home</button>
+{% if user_type == "customer" %}
+    <button class="nav-btn" style="padding: 15px 30px;" onclick="window.location='{% url 'customerHome' %}'">Home</button>
+{% elif user_type == "company" %}
+<button class="nav-btn" style="padding: 15px 30px;" onclick="window.location='{% url 'companyHome' %}'">Home</button>
+{% endif %}
 <!-- Logout Form -->
 <form action={% url 'logout' %}>
 	<button type="submit">Logout</button>
@@ -22,19 +27,28 @@
 {% endblock %}
 
 {% block body %}
-{% for property in allProperties %}
+<div>
+    {% for property in allProperties %}
     <div class="property-display">
         <p>Price: {{ property.price }}</p>
         <p>Location: {{ property.address }}, {{ property.state }}, {{ property.zip }}</p>
-        <p>Price: {{ property.agentID.name }}</p>
-        <p>Property Description</p>
+        <p>Agent: {{ property.agentID.name }}</p>
+        <p>Property Description:</p>
         <p>{{ property.description }}</p>
-
+        
         {% if user_type == "customer" %}
-            <button class="review-btn" onclick="window.location='{% url real_estate/templates/real_estate/review.html' ; property.id %}'">Review</button>
+        <form action={% url "review" property.pk %}>
+            <button type="submit">Review</button>
+        </form>
+        <form action={% url "booking" property.pk %}>
+            <button type="submit">Book</button>
+        </form>
         {% elif user_type == "company" %}
-            <button class="review-btn" onclick="window.location='{% url real_estate/templates/real_estate/viewReviews.html' ; property.id %}'">View Reviews</button>
+        <form action={% url "viewReviews" property.pk %}>
+            <button type="submit">View Reviews</button>
+        </form>
         {% endif %}
     </div>
-{% endfor %}
+    {% endfor %}
+</div>
 {% endblock %}
