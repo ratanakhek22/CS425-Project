@@ -84,11 +84,31 @@
             {% endif %}
 
             {% if user_type == "customer" %}
-
+                <p>
+                    For customers:
+                    <ul>
+                        <li>Search for properties</li>
+                        <li>Make appointments with agents</li>
+                    </ul>
+                </p>
             {% elif user_type == "company" %}
-
+                <p>
+                    For companies:
+                    <ul>
+                        <li>Manage agents</li>
+                        <li>Manage properties</li>
+                        <li>Manage appointments</li>
+                    </ul>
+                </p>
             {% else %}
-            
+                <p>
+                    For agents:
+                    <ul>
+                        <li>Manage client interactions</li>
+                        <li>Create and update property listings</li>
+                        <li>Analyze real-time market data</li>
+                    </ul>
+                </p>            
             {% endif %}
 
         </div>
