@@ -1,0 +1,23 @@
+<!-- displaye_review.html -->
+
+{% extends "real_estate/default.html" %}
+{% block body %}
+{% for review in allPReviews %}
+    <div class="Review-display">
+        <p>Author: {{ Review.author }}</p>
+        <p>date: {{ Review.date }}</p>
+        <p>comment: {{ Review.comment }}</p>
+
+        {% if user_type == "customer" %}
+            <button class="review-btn" onclick="window.location='{% url real_estate/templates/real_estate/review.html' ; property.id %}'">Review</button>
+        {% elif user_type == "company" %}
+            <button class="review-btn" onclick="window.location='{% url real_estate/templates/real_estate/viewReviews.html' ; property.id %}'">View Reviews</button>
+        {% endif %}
+    </div>
+{% endfor %}
+{% endblock %}
+class Review(models.Model):
+    author = models.ForeignKey(Customer, on_delete=models.CASCADE, related_name="myReviews")
+    propertyID = models.ForeignKey(Property, on_delete=models.CASCADE, related_name="allReviews")
+    date = models.DateField(auto_now_add=True) # datetime.date instance (python)
+    comment = models.TextField()
