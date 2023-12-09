@@ -14,4 +14,5 @@ urlpatterns = [
     
     path("browse/", views.browsing_view, name="browse"),
     path("propert_list/", views.property_list_view, name="propertyList"),
+    path("addProperty/", views.add_property_view, name="addProperty"),
 ]
