@@ -88,4 +88,18 @@ def customer_view(request):
     })
     
 def browsing_view(request):
-    return render(request, "real_estate/browse.html")
+    return render(request, "real_estate/propertyList.html", {
+        "allProperties": Property.objects.all(),
+        "user_type": "customer",
+    })
+    
+def property_list_view(request):
+    companyUser = request.user.isCompany.all()[0]
+    allEmployees = companyUser.allAgents.all()
+    allProperties = []
+    for employee in allEmployees:
+        allProperties.append(employee.allAssignedProperties)
+    return render(request, "real_estate/propertyList.html", {
+        "allProperties": allProperties,
+        "user_type": "company",
+    })
