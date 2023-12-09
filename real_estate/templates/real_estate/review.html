@@ -6,8 +6,8 @@
   <h2>Write a Review</h2>
   <form method="post" action="{% url 'review' property_id %}">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit Review</button>
+   
+    <button type="submit"> Submit Review</button>
   </form>
   <a href="{% url real_estate/templates/real_estate/propertyList.html%}">Back to Property Detail</a>
 {% endblock %}
