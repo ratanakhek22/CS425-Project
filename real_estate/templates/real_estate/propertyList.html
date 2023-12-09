@@ -30,10 +30,10 @@
         <p>Property Description</p>
         <p>{{ property.description }}</p>
 
-        {% if user_type=="customer" %}
-
-        {% elif user_type=="company" %}
-
+        {% if user_type == "customer" %}
+            <div></div>
+        {% elif user_type == "company" %}
+            <div></div>
         {% endif %}
     </div>
 {% endfor %}
