@@ -21,5 +21,38 @@
 {% endblock %}
 
 {% block body %}
-
+<!-- Survey Form -->
+<div id="survey-form">
+    <h2>Property Information Survey</h2>
+    <form method="post" action="{% url 'processSurvey' %}">
+        {% csrf_token %}
+        
+        <!-- Zip Code -->
+        <label for="zip_code">Zip Code:</label>
+        <input type="text" id="zip_code" name="zip_code" required>
+        <br>
+        
+        <!-- State -->
+        <label for="state">State:</label>
+        <input type="text" id="state" name="state" required>
+        <br>
+        
+        <!-- Address -->
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+        <br>
+        
+        <!-- Price -->
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required>
+        <br>
+        
+        <!-- Description -->
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" cols="50"></textarea>
+        <br>
+        
+        <button type="submit">Submit Form</button>
+    </form>
+</div>
 {% endblock %}
