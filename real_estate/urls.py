@@ -12,7 +12,6 @@ urlpatterns = [
     path("company/", views.company_view, name="companyHome"),
     path("customer/", views.customer_view, name="customerHome"),
     
-    path("browse/", views.browsing_view, name="browse"),
     path("propert_list/", views.property_list_view, name="propertyList"),
-    path("addProperty/", views.add_property_view, name="addProperty"),
+    #path("addProperty/", views.add_property_view, name="addProperty"),
 ]

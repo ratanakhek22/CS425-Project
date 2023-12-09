@@ -94,11 +94,21 @@ def browsing_view(request):
     })
     
 def property_list_view(request):
+    if request.method == "POST":
+        print("hi")
+        
+    if len(request.user.isCompany.all()) == 0:
+        return render(request, "real_estate/propertyList.html", {
+            "allProperties": Property.objects.all(),
+            "user_type": "customer",
+        })
+
     companyUser = request.user.isCompany.all()[0]
     allEmployees = companyUser.allAgents.all()
     allProperties = []
     for employee in allEmployees:
         allProperties.append(employee.allAssignedProperties)
+        
     return render(request, "real_estate/propertyList.html", {
         "allProperties": allProperties,
         "user_type": "company",
