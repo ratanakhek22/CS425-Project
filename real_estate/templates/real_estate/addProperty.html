@@ -1,0 +1,25 @@
+{% extends "real_estate/default.html" %}
+{% load static %}
+
+{% block static %}
+{% endblock %}
+
+{% block style %}
+{% endblock %}
+
+{% block nav %}
+<!-- Home Page -->
+<button class="nav-btn" style="padding: 15px 30px;" onclick="window.location='{% url 'companyHome' %}'">Home</button>
+<!-- add a logout button -->
+<form action={% url 'logout' %}>
+	<button type="submit">Logout</button>
+</form>
+<!-- List Properties -->
+<button class="nav-btn" style="padding: 15px 30px;" onclick="window.location='{% url 'propertyList' %}'">Property List</button>
+<!-- add prop btn -->
+<button class="nav-btn" style="padding: 15px 30px;" onclick="window.location='{% url 'addProperty' %}'">Add New Property</button>
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}
