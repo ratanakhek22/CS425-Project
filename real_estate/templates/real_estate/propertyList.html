@@ -31,9 +31,9 @@
         <p>{{ property.description }}</p>
 
         {% if user_type == "customer" %}
-            <div></div>
+            <button class="review-btn" onclick="window.location='{% url real_estate/templates/real_estate/review.html' ; property.id %}'">Review</button>
         {% elif user_type == "company" %}
-            <div></div>
+            <button class="review-btn" onclick="window.location='{% url real_estate/templates/real_estate/viewReviews.html' ; property.id %}'">View Reviews</button>
         {% endif %}
     </div>
 {% endfor %}

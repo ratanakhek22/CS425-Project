@@ -115,4 +115,8 @@ def property_list_view(request):
     })
     
 def add_property_view(request):
+    if request.method == "POST":
+        data = request.POST
+        newProperty = Property(zip=data["zip_code"], state=data["state"], address=data["address"], price=data["price"], description=data["description"], agentID=Agent.objects.filter(pk=data["agent"]))
+        newProperty.save()
     return render(request, "real_estate/addProperty.html")
