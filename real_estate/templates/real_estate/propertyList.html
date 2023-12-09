@@ -1,0 +1,40 @@
+{% extends "real_estate/default.html" %}
+{% load static %}
+
+{% block static %}
+{% endblock %}
+
+{% block style %}
+.property-display {
+    font-size: 22px;
+    border: solid gray 2px;
+    border-radius: 15px;
+}
+{% endblock %}
+
+{% block nav %}
+<!-- Home Page -->
+<button class="nav-btn" style="padding: 15px 30px;" onclick="window.location='{% url 'customerHome' %}'">Home</button>
+<!-- Logout Form -->
+<form action={% url 'logout' %}>
+	<button type="submit">Logout</button>
+</form>
+{% endblock %}
+
+{% block body %}
+{% for property in allProperties %}
+    <div class="property-display">
+        <p>Price: {{ property.price }}</p>
+        <p>Location: {{ property.address }}, {{ property.state }}, {{ property.zip }}</p>
+        <p>Price: {{ property.agentID.name }}</p>
+        <p>Property Description</p>
+        <p>{{ property.description }}</p>
+
+        {% if user_type=="customer" %}
+
+        {% elif user_type=="company" %}
+
+        {% endif %}
+    </div>
+{% endfor %}
+{% endblock %}
