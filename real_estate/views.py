@@ -10,13 +10,14 @@ def login_view(request, usertype):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
-        user = UserProfile.objects.get(username=username, password=password)
+        user = UserProfile.objects.filter(username=username, password=password)
         
-        if user is not None:
-            login(request, user)
+        if len(user) != 0:
+            login(request, user[0])
         else:
             return render(request, "real_estate/login.html", {
-                "message": "Invalid username and/or password."
+                "message": "Invalid username and/or password.",
+                "user_type": usertype,
             })
         
         # check for customer type and display different pages
@@ -77,7 +78,7 @@ def company_view(request):
     user = request.user
     return render(request, "real_estate/companyHome.html", {
         "userCompany": Company.objects.get(companyID=user),
-        "allEmployees": list(Company.objects.get(companyID=user).allAgents.all())
+        "allEmployees": list(Company.objects.get(companyID=user).allAgents.all()),
     })
     
 def customer_view(request):
@@ -85,3 +86,6 @@ def customer_view(request):
     return render(request, "real_estate/customerHome.html", {
         "userCustomer": Customer.objects.get(customerID=user),
     })
+    
+def browsing_view(request):
+    return render(request, "real_estate/browse.html")

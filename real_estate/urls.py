@@ -11,4 +11,6 @@ urlpatterns = [
     path("agent/", views.agent_view, name="agentHome"),
     path("company/", views.company_view, name="companyHome"),
     path("customer/", views.customer_view, name="customerHome"),
+    
+    path("browse/", views.browsing_view, name="browse"),
 ]

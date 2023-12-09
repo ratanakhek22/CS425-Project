@@ -10,9 +10,9 @@
 
 {% block nav %}
 <!-- Home Page -->
+<button class="nav-btn" style="padding: 15px 30px;" onclick="window.location='{% url 'companyHome' %}'">Home</button>
 <!-- add a logout button -->
 <form action={% url 'logout' %}>
-	{% csrf_token %}
 	<button type="submit">Logout</button>
 </form>
 {% endblock %}
@@ -22,7 +22,6 @@
 	<h2>Company Home Page</h2>
 	<h3>Company Information</h3>
 	<p> Company's Name: {{ userCompany.name }}</p>
-	
 </div>
 
 {% for employee in allEmployees %}
